@@ -157,12 +157,12 @@ export function PropertyDetail({ property }: { property: Property }) {
                             >
                                 Continue to Book
                             </Link>
-                            <div className="pt-4 border-t border-gray-100">
-                                <div className="flex gap-2">
-                                    <button className="flex-1 flex items-center justify-center gap-1.5 h-10 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 cursor-pointer"><MessageCircle size={14} />Chat</button>
-                                    <button className="flex-1 flex items-center justify-center gap-1.5 h-10 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 cursor-pointer"><Phone size={14} />Call</button>
-                                </div>
-                            </div>
+                            <Link
+                                href={`/dashboard/messages?start=true&property=${property.id}&landlord=${property.landlord_id}`}
+                                className="w-full mt-4 h-12 rounded-xl bg-gray-900 text-white font-semibold text-sm hover:bg-gray-800 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                            >
+                                <MessageCircle size={16} /> Contact Landlord
+                            </Link>
                         </div>
                     </div>
                 </div>

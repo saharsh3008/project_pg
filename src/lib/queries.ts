@@ -239,3 +239,91 @@ export async function getWishlists(): Promise<Property[]> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (data?.map((w: any) => w.property) as Property[]) || [];
 }
+
+/* ============================================
+   MESSAGE QUERIES
+   ============================================ */
+
+export async function getConversations() {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return [];
+
+    // Get all messages where user is sender or receiver
+    const { data, error } = await supabase
+        .from("messages")
+        .select(`
+            *,
+            sender:profiles!sender_id(id, full_name, avatar_url, role),
+            receiver:profiles!receiver_id(id, full_name, avatar_url, role),
+            property:properties(id, title, city)
+        `)
+        .or(`sender_id.eq.${user.id},receiver_id.eq.${user.id}`)
+        .order("created_at", { ascending: false });
+
+    if (error) {
+        console.error("Error fetching conversations:", error);
+        return [];
+    }
+
+    // Group by other user + property
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const convos = new Map<string, any>();
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data?.forEach((msg: any) => {
+        const otherUser = msg.sender_id === user.id ? msg.receiver : msg.sender;
+        const propId = msg.property_id || "general";
+        const key = `${otherUser.id}_${propId}`;
+
+        if (!convos.has(key)) {
+            convos.set(key, {
+                otherUser,
+                property: msg.property,
+                lastMessage: msg,
+                unreadCount: msg.receiver_id === user.id && !msg.is_read ? 1 : 0
+            });
+        } else {
+            if (msg.receiver_id === user.id && !msg.is_read) {
+                convos.get(key).unreadCount++;
+            }
+        }
+    });
+
+    return Array.from(convos.values());
+}
+
+export async function getMessages(otherUserId: string, propertyId?: string) {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return [];
+
+    let query = supabase
+        .from("messages")
+        .select(`
+            *,
+            sender:profiles!sender_id(id, full_name, avatar_url, role)
+        `)
+        .or(`and(sender_id.eq.${user.id},receiver_id.eq.${otherUserId}),and(sender_id.eq.${otherUserId},receiver_id.eq.${user.id})`);
+
+    if (propertyId && propertyId !== "general") {
+        query = query.eq("property_id", propertyId);
+    } else {
+        query = query.is("property_id", null);
+    }
+
+    const { data, error } = await query.order("created_at", { ascending: true });
+
+    if (error) {
+        console.error("Error fetching messages:", error);
+        return [];
+    }
+
+    // Mark as read
+    const unreadIds = data.filter(m => m.receiver_id === user.id && !m.is_read).map(m => m.id);
+    if (unreadIds.length > 0) {
+        await supabase.from("messages").update({ is_read: true }).in("id", unreadIds);
+    }
+
+    return data;
+}

@@ -227,3 +227,36 @@ export async function deleteProperty(propertyId: string): Promise<{ success: boo
 
     return { success: true };
 }
+
+/* ============================================
+   MESSAGE ACTIONS
+   ============================================ */
+
+/** Send a message */
+export async function sendMessage(data: {
+    receiver_id: string;
+    property_id?: string;
+    content: string;
+}): Promise<{ success: boolean; error?: string }> {
+    const supabase = createClient();
+    if (!supabase) return { success: false, error: "Supabase not configured" };
+
+    const {
+        data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) return { success: false, error: "Not authenticated" };
+
+    const { error } = await supabase.from("messages").insert({
+        sender_id: user.id,
+        receiver_id: data.receiver_id,
+        property_id: data.property_id === "general" ? null : data.property_id,
+        content: data.content,
+    });
+
+    if (error) {
+        return { success: false, error: error.message };
+    }
+
+    return { success: true };
+}
