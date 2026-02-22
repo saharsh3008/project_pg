@@ -209,5 +209,6 @@ export async function getWishlists(): Promise<Property[]> {
         return [];
     }
 
-    return (data?.map((w: { property: Property }) => w.property) as Property[]) || [];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (data?.map((w: any) => w.property) as Property[]) || [];
 }

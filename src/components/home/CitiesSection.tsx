@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 
 export function CitiesSection() {
-    const [active, setActive] = useState(COUNTRIES[0].name);
+    const [active, setActive] = useState<string>(COUNTRIES[0].name);
     const cities = CITIES_BY_COUNTRY[active] || [];
 
     return (
