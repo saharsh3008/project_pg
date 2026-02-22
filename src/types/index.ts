@@ -31,8 +31,8 @@ export interface Property {
     city: string;
     country: string;
     address: string;
-    latitude: number;
-    longitude: number;
+    latitude: number | null;
+    longitude: number | null;
     price_per_month: number;
     currency: string;
     amenities: string[];
