@@ -25,6 +25,8 @@ const currencySymbols: Record<string, string> = {
 export function PropertyDetail({ property }: { property: Property }) {
     const [currentImg, setCurrentImg] = useState(0);
     const [wishlisted, setWishlisted] = useState(false);
+    const [checkIn, setCheckIn] = useState("");
+    const [checkOut, setCheckOut] = useState("");
     const images = property.images?.length > 0
         ? property.images
         : ["https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=900&h=600&fit=crop"];
@@ -126,14 +128,35 @@ export function PropertyDetail({ property }: { property: Property }) {
                             <div className="space-y-3">
                                 <div>
                                     <label className="text-xs font-medium text-gray-500 block mb-1">Move-in Date</label>
-                                    <div className="relative"><Calendar size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" /><input type="date" className="w-full h-11 pl-10 pr-3 border border-gray-200 rounded-xl text-sm text-gray-700 outline-none focus:ring-2 focus:ring-amber-red/20 focus:border-amber-red" /></div>
+                                    <div className="relative">
+                                        <Calendar size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                                        <input
+                                            type="date"
+                                            value={checkIn}
+                                            onChange={(e) => setCheckIn(e.target.value)}
+                                            className="w-full h-11 pl-10 pr-3 border border-gray-200 rounded-xl text-sm text-gray-700 outline-none focus:ring-2 focus:ring-amber-red/20 focus:border-amber-red"
+                                        />
+                                    </div>
                                 </div>
                                 <div>
                                     <label className="text-xs font-medium text-gray-500 block mb-1">Move-out Date</label>
-                                    <div className="relative"><Calendar size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" /><input type="date" className="w-full h-11 pl-10 pr-3 border border-gray-200 rounded-xl text-sm text-gray-700 outline-none focus:ring-2 focus:ring-amber-red/20 focus:border-amber-red" /></div>
+                                    <div className="relative">
+                                        <Calendar size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                                        <input
+                                            type="date"
+                                            value={checkOut}
+                                            onChange={(e) => setCheckOut(e.target.value)}
+                                            className="w-full h-11 pl-10 pr-3 border border-gray-200 rounded-xl text-sm text-gray-700 outline-none focus:ring-2 focus:ring-amber-red/20 focus:border-amber-red"
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                            <button className="w-full h-12 rounded-xl bg-amber-red text-white font-semibold text-sm hover:bg-amber-red-hover transition-colors cursor-pointer">Book Now</button>
+                            <Link
+                                href={`/property/${property.id}/book?checkIn=${checkIn}&checkOut=${checkOut}`}
+                                className="w-full h-12 rounded-xl bg-amber-red text-white font-semibold text-sm hover:bg-amber-red-hover transition-colors flex items-center justify-center cursor-pointer"
+                            >
+                                Continue to Book
+                            </Link>
                             <div className="pt-4 border-t border-gray-100">
                                 <div className="flex gap-2">
                                     <button className="flex-1 flex items-center justify-center gap-1.5 h-10 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 cursor-pointer"><MessageCircle size={14} />Chat</button>
