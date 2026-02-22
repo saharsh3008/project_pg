@@ -44,7 +44,7 @@ export function Header({ user }: { user?: User | null }) {
                                 scrolled ? "text-gray-900" : "text-white"
                             )}
                         >
-                            nivaas
+                            Nivaas
                         </span>
                     </Link>
 
