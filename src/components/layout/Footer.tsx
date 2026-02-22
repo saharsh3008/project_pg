@@ -24,9 +24,9 @@ export function Footer() {
                                 <path d="M16 6L24 24H8L16 6Z" fill="white" opacity="0.9" />
                                 <circle cx="16" cy="20" r="3" fill="white" />
                             </svg>
-                            <span className="text-[22px] font-bold text-amber-red tracking-tight">amber</span>
+                            <span className="text-[22px] font-bold text-amber-red tracking-tight">nivaas</span>
                         </Link>
-                        <p className="mt-2 text-sm text-gray-500">amber © 2024 All rights reserved</p>
+                        <p className="mt-2 text-sm text-gray-500">nivaas © 2024 All rights reserved</p>
 
                         {/* Trustpilot */}
                         <div className="mt-4 bg-gray-50 rounded-lg p-4 cursor-pointer">

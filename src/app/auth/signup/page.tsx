@@ -103,7 +103,7 @@ export default function SignupPage() {
             >
                 <div className="text-white max-w-lg">
                     <h2 className="text-4xl font-bold leading-tight">
-                        Start your <span className="text-amber-200">new chapter</span> today
+                        Start your <span className="text-nivaas-200">new chapter</span> today
                     </h2>
                     <p className="mt-3 text-lg text-white/80">
                         Create your free account and discover thousands of verified student accommodations worldwide.
@@ -121,7 +121,7 @@ export default function SignupPage() {
                             <path d="M16 6L24 24H8L16 6Z" fill="white" opacity="0.9" />
                             <circle cx="16" cy="20" r="3" fill="white" />
                         </svg>
-                        <span className="text-[22px] font-bold text-amber-red tracking-tight">amber</span>
+                        <span className="text-[22px] font-bold text-amber-red tracking-tight">nivaas</span>
                     </Link>
 
                     <h1 className="text-2xl font-bold text-gray-900">Create your account</h1>
@@ -235,7 +235,7 @@ export default function SignupPage() {
                                         className={cn(
                                             "h-1 flex-1 rounded-full transition-colors",
                                             password.length >= i * 3
-                                                ? password.length >= 10 ? "bg-green-500" : password.length >= 6 ? "bg-amber-400" : "bg-red-400"
+                                                ? password.length >= 10 ? "bg-green-500" : password.length >= 6 ? "bg-nivaas-400" : "bg-red-400"
                                                 : "bg-gray-200"
                                         )}
                                     />

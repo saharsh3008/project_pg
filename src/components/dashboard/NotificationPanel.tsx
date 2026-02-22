@@ -31,8 +31,8 @@ export function NotificationPanel() {
             title: "Property Saved",
             desc: "Price dropped on a property in your wishlist.",
             time: "Yesterday",
-            icon: <Home size={16} className="text-amber-500" />,
-            bg: "bg-amber-50",
+            icon: <Home size={16} className="text-nivaas-500" />,
+            bg: "bg-nivaas-50",
             unread: false
         }
     ];

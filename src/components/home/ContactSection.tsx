@@ -45,7 +45,7 @@ export function ContactSection() {
 
                         {/* Email */}
                         <a
-                            href="mailto:contact@amberstudent.com"
+                            href="mailto:contact@nivaasstudent.com"
                             className="relative rounded-xl h-[88px] lg:h-[117px] w-[165px] bg-white border border-gray-100 flex flex-col items-center justify-center gap-2 lg:gap-3 hover:-translate-y-0.5 transition-transform"
                         >
                             <span className="text-2xl">✉️</span>

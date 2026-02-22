@@ -93,7 +93,7 @@ export function PropertyDetail({ property }: { property: Property }) {
                                 </div>
                             </div>
                             <div className="flex items-center gap-3 mt-3">
-                                <div className="flex items-center gap-1 px-3 py-1 bg-amber-50 rounded-lg"><Star size={16} className="fill-amber-400 text-amber-400" /><span className="text-sm font-bold text-gray-900">{property.rating}</span></div>
+                                <div className="flex items-center gap-1 px-3 py-1 bg-nivaas-50 rounded-lg"><Star size={16} className="fill-nivaas-400 text-nivaas-400" /><span className="text-sm font-bold text-gray-900">{property.rating}</span></div>
                                 <span className="text-sm text-gray-500">{property.review_count} reviews</span>
                                 <span className="text-sm text-emerald-600 font-medium">{property.rooms_available} rooms available</span>
                             </div>

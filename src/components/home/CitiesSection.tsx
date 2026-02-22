@@ -71,7 +71,7 @@ export function CitiesSection() {
                                 <span className="text-white text-lg font-bold tracking-tight">
                                     {city.name}
                                 </span>
-                                <span className="text-amber-100 text-xs font-semibold uppercase tracking-wider">
+                                <span className="text-nivaas-100 text-xs font-semibold uppercase tracking-wider">
                                     {city.propertyCount}+ homes
                                 </span>
                             </div>

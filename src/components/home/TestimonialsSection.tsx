@@ -23,7 +23,7 @@ export function TestimonialsSection() {
                     What do students have to say about us?
                 </h2>
                 <p className="text-sm lg:text-lg text-gray-500 mt-1">
-                    Over 1M students trust amber for their student housing needs ;)
+                    Over 1M students trust nivaas for their student housing needs ;)
                 </p>
 
                 {/* Trustpilot badge */}
@@ -97,7 +97,7 @@ export function TestimonialsSection() {
 
                 {/* Read All */}
                 <a
-                    href="https://www.trustpilot.com/review/amberstudent.com"
+                    href="https://www.trustpilot.com/review/nivaasstudent.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-6 md:mt-8 flex items-center gap-1.5 w-full md:w-fit mx-auto justify-center px-4 md:px-6 py-3 md:py-4 border border-amber-red text-amber-red rounded text-sm md:text-base font-medium hover:bg-amber-red-light transition-colors"

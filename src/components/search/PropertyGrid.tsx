@@ -225,7 +225,7 @@ export function PropertyGrid({
             <div className="flex items-center justify-between mb-4">
                 <p className="text-sm text-gray-500">
                     <span className="font-semibold text-gray-900">{filtered.length}</span> properties found
-                    {initialProperties.length === 0 && <span className="text-xs text-amber-500 ml-2">(showing sample data)</span>}
+                    {initialProperties.length === 0 && <span className="text-xs text-nivaas-500 ml-2">(showing sample data)</span>}
                 </p>
                 <div className="relative">
                     <select
@@ -309,10 +309,10 @@ export function PropertyGrid({
                                         <span className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-700">{currencySymbols[property.currency] || "£"}{property.price_per_month}</span>
                                         <span className="text-xs text-slate-400 font-medium ml-1">/month</span>
                                     </div>
-                                    <div className="flex items-center gap-1 bg-amber-50 px-2 py-1 rounded-lg">
-                                        <Star size={14} className="fill-amber-500 text-amber-500" />
-                                        <span className="text-[13px] font-bold text-amber-900">{property.rating}</span>
-                                        <span className="text-[11px] text-amber-700/60 font-medium">({property.review_count})</span>
+                                    <div className="flex items-center gap-1 bg-nivaas-50 px-2 py-1 rounded-lg">
+                                        <Star size={14} className="fill-nivaas-500 text-nivaas-500" />
+                                        <span className="text-[13px] font-bold text-nivaas-900">{property.rating}</span>
+                                        <span className="text-[11px] text-nivaas-700/60 font-medium">({property.review_count})</span>
                                     </div>
                                 </div>
                             </div>

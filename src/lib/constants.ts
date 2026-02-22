@@ -130,7 +130,7 @@ export const TESTIMONIALS: TestimonialData[] = [
         name: "Paveneech Stritagul",
         university: "Imperial College Business School",
         rating: 5,
-        comment: "The best service I could ask for an international student. Awesome, great follow-up services that helped me throughout the process from start to the end. Thanks to Amber for a great facility!",
+        comment: "The best service I could ask for an international student. Awesome, great follow-up services that helped me throughout the process from start to the end. Thanks to Nivaas for a great facility!",
         avatarGradient: "from-indigo-400 to-purple-600",
         initials: "PS",
     },
@@ -138,7 +138,7 @@ export const TESTIMONIALS: TestimonialData[] = [
         name: "Roberto Antonia",
         university: "University College London",
         rating: 5,
-        comment: "I am going to study at UCL and Supreet from Amber did an excellent job in helping me. I do not have doubt to recommend Supreet as a student helper. The room is in an excellent location.",
+        comment: "I am going to study at UCL and Supreet from Nivaas did an excellent job in helping me. I do not have doubt to recommend Supreet as a student helper. The room is in an excellent location.",
         avatarGradient: "from-emerald-400 to-teal-400",
         initials: "RA",
     },
@@ -154,7 +154,7 @@ export const TESTIMONIALS: TestimonialData[] = [
         name: "Bambee",
         university: "The University of Queensland",
         rating: 5,
-        comment: "I was desperately finding a room in Brisbane, it was so hard. But with Amber assistance, in only one day I already had a room for myself for another year. Thank you so much!! ❤️",
+        comment: "I was desperately finding a room in Brisbane, it was so hard. But with Nivaas assistance, in only one day I already had a room for myself for another year. Thank you so much!! ❤️",
         avatarGradient: "from-violet-300 to-pink-200",
         initials: "B",
     },
@@ -162,7 +162,7 @@ export const TESTIMONIALS: TestimonialData[] = [
         name: "Satya",
         university: "Illinois Institute of Technology",
         rating: 5,
-        comment: "I was on a tight deadline and under many constraints. AmberStudent really helped in what would otherwise have been a very stressful housing hunt! Thank you!",
+        comment: "I was on a tight deadline and under many constraints. NivaasStudent really helped in what would otherwise have been a very stressful housing hunt! Thank you!",
         avatarGradient: "from-cyan-400 to-indigo-900",
         initials: "S",
     },
@@ -198,7 +198,7 @@ export const FOOTER_LINKS = {
         { label: "Blog", href: "/blog" },
         { label: "Podcast", href: "/podcast" },
         { label: "Newsroom", href: "/news" },
-        { label: "Amber Plus", href: "/plus" },
+        { label: "Nivaas Plus", href: "/plus" },
         { label: "Scholarships", href: "/scholarships" },
         { label: "Exams", href: "/exams", badge: "New" },
     ],
@@ -212,11 +212,11 @@ export const FOOTER_LINKS = {
 };
 
 export const SOCIAL_LINKS = [
-    { label: "LinkedIn", href: "https://linkedin.com/company/amberstudent", icon: "linkedin" },
-    { label: "Facebook", href: "https://facebook.com/amberstudent", icon: "facebook" },
-    { label: "Instagram", href: "https://instagram.com/amberstudent", icon: "instagram" },
+    { label: "LinkedIn", href: "https://linkedin.com/company/nivaasstudent", icon: "linkedin" },
+    { label: "Facebook", href: "https://facebook.com/nivaasstudent", icon: "facebook" },
+    { label: "Instagram", href: "https://instagram.com/nivaasstudent", icon: "instagram" },
     { label: "YouTube", href: "https://youtube.com/channel/UCzm8GT3xWuXqQt9O7CFpqJw", icon: "youtube" },
-    { label: "X", href: "https://twitter.com/amberstudent_", icon: "twitter" },
+    { label: "X", href: "https://twitter.com/nivaasstudent_", icon: "twitter" },
 ];
 
 /* ============================================

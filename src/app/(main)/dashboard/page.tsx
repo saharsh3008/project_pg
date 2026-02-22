@@ -12,7 +12,7 @@ const QUICK_ACTIONS = [
     { icon: <Calendar size={20} />, label: "My Bookings", href: "/dashboard/bookings", color: "bg-emerald-50 text-emerald-600" },
     { icon: <MessageCircle size={20} />, label: "Messages", href: "/dashboard/messages", color: "bg-purple-50 text-purple-600" },
     { icon: <Settings size={20} />, label: "Settings", href: "/dashboard/settings", color: "bg-gray-100 text-gray-600" },
-    { icon: <Plus size={20} />, label: "List Property", href: "/dashboard/list-property", color: "bg-amber-50 text-amber-600" },
+    { icon: <Plus size={20} />, label: "List Property", href: "/dashboard/list-property", color: "bg-nivaas-50 text-nivaas-600" },
 ];
 
 const RECENT_BOOKINGS = [
@@ -58,7 +58,7 @@ export default async function DashboardPage() {
                         { label: "Saved Properties", value: "12", icon: <Heart size={18} />, color: "text-pink-500" },
                         { label: "Active Bookings", value: bookings.length.toString(), icon: <Calendar size={18} />, color: "text-emerald-500" },
                         { label: "Unread Messages", value: "3", icon: <MessageCircle size={18} />, color: "text-blue-500" },
-                        { label: "Reviews Given", value: "5", icon: <Home size={18} />, color: "text-amber-500" },
+                        { label: "Reviews Given", value: "5", icon: <Home size={18} />, color: "text-nivaas-500" },
                     ].map((stat) => (
                         <div key={stat.label} className="bg-white rounded-xl p-4 border border-gray-100">
                             <div className={`${stat.color} mb-2`}>{stat.icon}</div>

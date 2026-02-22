@@ -66,10 +66,10 @@ export default function LoginPage() {
             >
                 <div className="text-white max-w-lg">
                     <h2 className="text-4xl font-bold leading-tight">
-                        Find your <span className="text-amber-200">perfect student home</span> with ease
+                        Find your <span className="text-nivaas-200">perfect student home</span> with ease
                     </h2>
                     <p className="mt-3 text-lg text-white/80">
-                        Join over 1M+ students who trust Amber for hassle-free accommodation booking.
+                        Join over 1M+ students who trust Nivaas for hassle-free accommodation booking.
                     </p>
                     <div className="flex gap-6 mt-6 text-sm text-white/70">
                         <span>✓ 250+ Cities</span>
@@ -89,7 +89,7 @@ export default function LoginPage() {
                             <path d="M16 6L24 24H8L16 6Z" fill="white" opacity="0.9" />
                             <circle cx="16" cy="20" r="3" fill="white" />
                         </svg>
-                        <span className="text-[22px] font-bold text-amber-red tracking-tight">amber</span>
+                        <span className="text-[22px] font-bold text-amber-red tracking-tight">nivaas</span>
                     </Link>
 
                     <h1 className="text-2xl font-bold text-gray-900">Welcome back</h1>

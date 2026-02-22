@@ -176,7 +176,7 @@ export function MessagingInterface({
                                         {convo.otherUser.avatar_url ? (
                                             <Image src={convo.otherUser.avatar_url} alt="" fill className="object-cover" />
                                         ) : (
-                                            <div className="w-full h-full flex items-center justify-center text-gray-500 font-bold bg-amber-100">
+                                            <div className="w-full h-full flex items-center justify-center text-gray-500 font-bold bg-nivaas-100">
                                                 {convo.otherUser.full_name?.charAt(0) || convo.otherUser.email?.charAt(0) || 'U'}
                                             </div>
                                         )}
@@ -189,7 +189,7 @@ export function MessagingInterface({
                                             </span>
                                         </div>
                                         {convo.property && (
-                                            <p className="text-[11px] font-medium text-amber-600 mb-1 truncate">{convo.property.title}</p>
+                                            <p className="text-[11px] font-medium text-nivaas-600 mb-1 truncate">{convo.property.title}</p>
                                         )}
                                         <p className={`text-xs truncate ${convo.unreadCount > 0 ? 'text-gray-900 font-semibold' : 'text-gray-500'}`}>
                                             {convo.lastMessage.content}
@@ -228,7 +228,7 @@ export function MessagingInterface({
                                 {activeConvo.otherUser.avatar_url ? (
                                     <Image src={activeConvo.otherUser.avatar_url} alt="" fill className="object-cover" />
                                 ) : (
-                                    <div className="w-full h-full flex items-center justify-center text-gray-500 font-bold bg-amber-100">
+                                    <div className="w-full h-full flex items-center justify-center text-gray-500 font-bold bg-nivaas-100">
                                         {activeConvo.otherUser.full_name?.charAt(0) || 'U'}
                                     </div>
                                 )}

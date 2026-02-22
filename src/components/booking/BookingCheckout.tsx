@@ -175,7 +175,7 @@ export function BookingCheckout({
                                         <input type="text" placeholder="123" className="w-full h-12 px-4 border border-gray-200 rounded-lg text-sm bg-gray-50 cursor-not-allowed" disabled />
                                     </div>
                                 </div>
-                                <p className="text-xs text-amber-600 bg-amber-50 p-3 rounded-lg flex items-start gap-2">
+                                <p className="text-xs text-nivaas-600 bg-nivaas-50 p-3 rounded-lg flex items-start gap-2">
                                     <span className="shrink-0 mt-0.5">ℹ️</span>
                                     <span><strong>Test Mode:</strong> No actual payment details are required right now. Clicking "Confirm & Pay" will create the booking and mark the payment as pending.</span>
                                 </p>
