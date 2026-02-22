@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Home, Search, Heart, Calendar, MessageCircle, Settings, Bell, Plus } from "lucide-react";
+import { getBookings } from "@/lib/queries";
+import { createClient } from "@/lib/supabase/server";
 
 const QUICK_ACTIONS = [
     { icon: <Search size={20} />, label: "Find Properties", href: "/search", color: "bg-blue-50 text-blue-600" },
@@ -23,7 +25,18 @@ const statusColors: Record<string, string> = {
     cancelled: "bg-red-100 text-red-600",
 };
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    // Auth check
+    if (!user) {
+        return <div className="p-8 text-center text-red-500">Not authenticated</div>;
+    }
+
+    const bookings = await getBookings();
+    const recentBookings = bookings.slice(0, 3); // top 3
+
     return (
         <div className="min-h-screen bg-gray-50 pt-20 pb-12">
             <div className="max-w-[1200px] mx-auto px-4 lg:px-9">
@@ -45,7 +58,7 @@ export default function DashboardPage() {
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                     {[
                         { label: "Saved Properties", value: "12", icon: <Heart size={18} />, color: "text-pink-500" },
-                        { label: "Active Bookings", value: "1", icon: <Calendar size={18} />, color: "text-emerald-500" },
+                        { label: "Active Bookings", value: bookings.length.toString(), icon: <Calendar size={18} />, color: "text-emerald-500" },
                         { label: "Unread Messages", value: "3", icon: <MessageCircle size={18} />, color: "text-blue-500" },
                         { label: "Reviews Given", value: "5", icon: <Home size={18} />, color: "text-amber-500" },
                     ].map((stat) => (
@@ -87,27 +100,36 @@ export default function DashboardPage() {
                         </div>
 
                         <div className="space-y-3">
-                            {RECENT_BOOKINGS.map((booking) => (
-                                <div key={booking.id} className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-100 hover:shadow-sm transition-shadow">
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-amber-red/20 to-amber-red/5 flex items-center justify-center text-amber-red">
-                                            <Home size={20} />
+                            {recentBookings.map((booking) => {
+                                const sym = booking.property?.currency === 'GBP' ? '£' : (booking.property?.currency || '£');
+                                return (
+                                    <div key={booking.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-gray-100 hover:shadow-sm transition-shadow gap-4">
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-amber-red/20 to-amber-red/5 flex items-center justify-center text-amber-red shrink-0">
+                                                <Home size={20} />
+                                            </div>
+                                            <div>
+                                                <Link href={`/property/${booking.property_id}`} className="text-sm font-semibold text-gray-900 hover:text-amber-red hover:underline">
+                                                    {booking.property?.title}
+                                                </Link>
+                                                <p className="text-xs text-gray-500 mt-1 flex items-center gap-1.5">
+                                                    <span>{booking.property?.city}</span>
+                                                    <span className="w-1 h-1 rounded-full bg-gray-300"></span>
+                                                    <span>{booking.check_in} — {booking.check_out}</span>
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <h3 className="text-sm font-semibold text-gray-900">{booking.property}</h3>
-                                            <p className="text-xs text-gray-500">{booking.city} • {booking.date}</p>
+                                        <div className="flex items-center gap-3 self-end sm:self-auto">
+                                            <span className="text-sm font-semibold text-gray-900">{sym}{booking.total_amount.toLocaleString()} <span className="text-xs text-gray-400 font-normal">total</span></span>
+                                            <span className={`px-2.5 py-1 text-[11px] font-semibold rounded-md capitalize ${statusColors[booking.status]}`}>
+                                                {booking.status}
+                                            </span>
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-3">
-                                        <span className="text-sm font-semibold text-gray-900">{booking.price}</span>
-                                        <span className={`px-2 py-1 text-[11px] font-semibold rounded-md capitalize ${statusColors[booking.status]}`}>
-                                            {booking.status}
-                                        </span>
-                                    </div>
-                                </div>
-                            ))}
+                                )
+                            })}
 
-                            {RECENT_BOOKINGS.length === 0 && (
+                            {recentBookings.length === 0 && (
                                 <div className="text-center py-8 bg-white rounded-xl border border-gray-100">
                                     <div className="text-4xl mb-2">📋</div>
                                     <p className="text-sm text-gray-500">No bookings yet</p>
