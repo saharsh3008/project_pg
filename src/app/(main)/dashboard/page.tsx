@@ -2,6 +2,9 @@ import Link from "next/link";
 import { Home, Search, Heart, Calendar, MessageCircle, Settings, Bell, Plus } from "lucide-react";
 import { getBookings } from "@/lib/queries";
 import { createClient } from "@/lib/supabase/server";
+import { NotificationPanel } from "@/components/dashboard/NotificationPanel";
+
+export const dynamic = "force-dynamic";
 
 const QUICK_ACTIONS = [
     { icon: <Search size={20} />, label: "Find Properties", href: "/search", color: "bg-blue-50 text-blue-600" },
@@ -46,12 +49,7 @@ export default async function DashboardPage() {
                         <h1 className="text-2xl font-bold text-gray-900">Welcome back! 👋</h1>
                         <p className="text-sm text-gray-500 mt-1">Here&apos;s what&apos;s happening with your account</p>
                     </div>
-                    <button className="relative w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-white cursor-pointer">
-                        <Bell size={18} className="text-gray-500" />
-                        <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-amber-red text-white text-[10px] font-bold rounded-full flex items-center justify-center">
-                            3
-                        </span>
-                    </button>
+                    <NotificationPanel />
                 </div>
 
                 {/* Stats Cards */}

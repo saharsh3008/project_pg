@@ -6,7 +6,9 @@ import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
-export function Header() {
+import { User } from "@supabase/supabase-js";
+
+export function Header({ user }: { user?: User | null }) {
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -67,12 +69,24 @@ export function Header() {
 
                     {/* Right Actions */}
                     <div className="flex items-center gap-3">
-                        <Link
-                            href="/auth/login"
-                            className="hidden md:inline-flex items-center px-6 py-2.5 rounded-full text-sm font-semibold bg-gradient-brand text-white hover:bg-gradient-brand-hover shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5"
-                        >
-                            Login / Sign Up
-                        </Link>
+                        {user ? (
+                            <Link
+                                href="/dashboard"
+                                className="hidden md:inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all"
+                            >
+                                <div className="w-5 h-5 rounded-full bg-gradient-brand flex items-center justify-center text-[10px] text-white font-bold">
+                                    {user.email?.charAt(0).toUpperCase() || 'U'}
+                                </div>
+                                Dashboard
+                            </Link>
+                        ) : (
+                            <Link
+                                href="/auth/login"
+                                className="hidden md:inline-flex items-center px-6 py-2.5 rounded-full text-sm font-semibold bg-gradient-brand text-white hover:bg-gradient-brand-hover shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5"
+                            >
+                                Login / Sign Up
+                            </Link>
+                        )}
 
                         {/* Hamburger */}
                         <button
@@ -119,13 +133,26 @@ export function Header() {
                         {link.label}
                     </a>
                 ))}
-                <Link
-                    href="/auth/login"
-                    className="text-base font-semibold text-amber-red py-3"
-                    onClick={() => setMobileOpen(false)}
-                >
-                    Login / Sign Up
-                </Link>
+                {user ? (
+                    <Link
+                        href="/dashboard"
+                        className="text-base font-semibold text-amber-red py-3 flex items-center gap-2"
+                        onClick={() => setMobileOpen(false)}
+                    >
+                        <div className="w-6 h-6 rounded-full bg-gradient-brand flex items-center justify-center text-white text-xs">
+                            {user.email?.charAt(0).toUpperCase() || 'U'}
+                        </div>
+                        My Dashboard
+                    </Link>
+                ) : (
+                    <Link
+                        href="/auth/login"
+                        className="text-base font-semibold text-amber-red py-3"
+                        onClick={() => setMobileOpen(false)}
+                    >
+                        Login / Sign Up
+                    </Link>
+                )}
             </aside>
         </>
     );

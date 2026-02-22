@@ -1,13 +1,25 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 import { SEARCH_WORDS } from "@/lib/constants";
 
 export function HeroSection() {
+    const router = useRouter();
     const [activeWord, setActiveWord] = useState(0);
     const [isFocused, setIsFocused] = useState(false);
+    const [query, setQuery] = useState("");
     const inputRef = useRef<HTMLInputElement>(null);
+
+    const handleSearch = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (query.trim()) {
+            router.push(`/search?q=${encodeURIComponent(query.trim())}`);
+        } else {
+            router.push("/search");
+        }
+    };
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -56,9 +68,9 @@ export function HeroSection() {
                 {/* Search Bar - Glassmorphism */}
                 <div className="w-full relative">
                     <div className="absolute -inset-1 bg-gradient-brand rounded-[2rem] blur-md opacity-30"></div>
-                    <div className="relative flex items-center min-h-[64px] md:min-h-[80px] bg-white/95 backdrop-blur-xl rounded-[2rem] pl-6 pr-2 py-2 shadow-2xl border border-white/50">
+                    <form onSubmit={handleSearch} className="relative flex items-center min-h-[64px] md:min-h-[80px] bg-white/95 backdrop-blur-xl rounded-[2rem] pl-6 pr-2 py-2 shadow-2xl border border-white/50">
                         {/* Animated placeholder */}
-                        {!isFocused && (
+                        {!isFocused && !query && (
                             <div className="absolute left-6 flex items-center gap-1.5 text-slate-400 text-sm md:text-lg pointer-events-none overflow-hidden whitespace-nowrap">
                                 <span>Search by</span>
                                 <span className="font-semibold text-slate-600 ml-1">
@@ -72,17 +84,20 @@ export function HeroSection() {
                             type="text"
                             className="w-full h-full border-none outline-none bg-transparent pr-4 text-base md:text-lg text-slate-700 font-medium"
                             aria-label="Search for student accommodation"
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
                             onFocus={() => setIsFocused(true)}
                             onBlur={(e) => { if (!e.target.value) setIsFocused(false); }}
                         />
 
                         <button
+                            type="submit"
                             className="flex-shrink-0 flex items-center justify-center w-[48px] h-[48px] md:w-[64px] md:h-[64px] rounded-full bg-gradient-brand text-white hover:bg-gradient-brand-hover hover:scale-105 transition-all duration-300 shadow-lg cursor-pointer"
                             aria-label="Search"
                         >
                             <Search size={24} className="ml-0.5" />
                         </button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </section>

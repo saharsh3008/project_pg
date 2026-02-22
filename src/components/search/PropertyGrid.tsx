@@ -92,10 +92,16 @@ const currencySymbols: Record<string, string> = {
     GBP: "£", USD: "$", EUR: "€", AUD: "A$", CAD: "C$",
 };
 
-export function PropertyGrid({ initialProperties }: { initialProperties: Property[] }) {
+export function PropertyGrid({
+    initialProperties,
+    initialQuery
+}: {
+    initialProperties: Property[];
+    initialQuery?: string;
+}) {
     const properties = initialProperties.length > 0 ? initialProperties : FALLBACK_PROPERTIES;
 
-    const [query, setQuery] = useState("");
+    const [query, setQuery] = useState(initialQuery || "");
     const [priceRange, setPriceRange] = useState(0);
     const [roomType, setRoomType] = useState("All");
     const [sortBy, setSortBy] = useState<string>("relevance");

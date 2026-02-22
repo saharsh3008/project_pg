@@ -21,7 +21,7 @@ export default async function SearchPage({
     return (
         <div className="min-h-screen bg-gray-50 pt-20">
             <div className="max-w-[1440px] mx-auto px-4 lg:px-9 pb-16">
-                <PropertyGrid initialProperties={properties} />
+                <PropertyGrid initialProperties={properties} initialQuery={params.q} />
             </div>
         </div>
     );
