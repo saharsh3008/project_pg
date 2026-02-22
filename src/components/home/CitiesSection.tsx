@@ -11,35 +11,38 @@ export function CitiesSection() {
     const cities = CITIES_BY_COUNTRY[active] || [];
 
     return (
-        <section className="bg-white py-8 lg:py-12" id="cities">
+        <section className="bg-slate-50 py-16 lg:py-24" id="cities">
             <div className="max-w-[1440px] mx-auto px-4 lg:px-9">
                 {/* Header */}
-                <h2 className="text-lg lg:text-2xl font-semibold lg:font-bold text-gray-800 leading-tight">
-                    Popular Cities Across the Globe
-                </h2>
-                <p className="text-sm lg:text-lg text-gray-500 mt-1">
-                    Book student accommodations near top cities and universities around the world
-                </p>
+                <div className="text-center mb-10">
+                    <span className="text-amber-red font-bold tracking-wider text-sm uppercase mb-2 block">Global Presence</span>
+                    <h2 className="text-3xl lg:text-5xl font-extrabold text-slate-900 leading-tight">
+                        Popular Cities Across the Globe
+                    </h2>
+                    <p className="text-base lg:text-lg text-slate-500 mt-4 max-w-2xl mx-auto">
+                        Book premium student accommodations near top universities around the world with exclusive perks.
+                    </p>
+                </div>
 
-                {/* Country Tabs */}
-                <div className="flex gap-2 overflow-x-auto hide-scrollbar mt-7 pb-1">
+                {/* Country Tabs - Pill shaped */}
+                <div className="flex gap-3 overflow-x-auto hide-scrollbar justify-start md:justify-center mb-10 pb-2">
                     {COUNTRIES.map((country) => (
                         <button
                             key={country.name}
                             onClick={() => setActive(country.name)}
                             className={cn(
-                                "flex items-center gap-1.5 h-10 px-3 lg:px-4 border rounded text-sm lg:text-base whitespace-nowrap transition-all cursor-pointer",
+                                "flex items-center gap-2 h-12 px-5 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300 shadow-sm",
                                 active === country.name
-                                    ? "border-gray-800 text-gray-800 font-medium"
-                                    : "border-gray-200 text-gray-500 hover:bg-gray-50"
+                                    ? "bg-slate-900 text-white shadow-md scale-105"
+                                    : "bg-white text-slate-600 hover:bg-slate-100 border border-slate-200"
                             )}
                         >
                             <Image
                                 src={`https://flagcdn.com/w40/${country.code}.png`}
                                 alt={`${country.name} flag`}
-                                width={22}
-                                height={16}
-                                className="rounded-sm object-cover"
+                                width={24}
+                                height={18}
+                                className="rounded-sm object-cover shadow-sm"
                             />
                             {country.name}
                         </button>
@@ -47,29 +50,28 @@ export function CitiesSection() {
                 </div>
 
                 {/* City Grid */}
-                <div className="mt-5 flex flex-wrap gap-0 md:gap-0">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                     {cities.map((city) => (
                         <a
                             key={city.name}
                             href="#"
-                            className="relative flex-shrink-0 w-[165px] h-[165px] md:w-[calc(100%/6)] md:h-auto md:aspect-square overflow-hidden rounded group"
+                            className="group relative aspect-[4/5] overflow-hidden rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 block"
                             title={city.name}
                         >
                             <Image
                                 src={city.image}
                                 alt={city.name}
                                 fill
-                                className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                sizes="(max-width:768px) 165px, 16.66vw"
+                                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                sizes="(max-width:768px) 50vw, 16vw"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10">
-                                <span className="px-3 py-1.5 md:px-5 md:py-2 rounded bg-black/60 text-white text-xs md:text-sm font-semibold md:font-medium whitespace-nowrap">
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                            <div className="absolute bottom-4 left-4 right-4 z-10 flex flex-col gap-1">
+                                <span className="text-white text-lg font-bold tracking-tight">
                                     {city.name}
                                 </span>
-                            </div>
-                            <div className="absolute top-2 right-2 z-10">
-                                <span className="px-1.5 py-0.5 rounded bg-amber-red text-white text-[10px] font-semibold">
+                                <span className="text-amber-100 text-xs font-semibold uppercase tracking-wider">
                                     {city.propertyCount}+ homes
                                 </span>
                             </div>
@@ -78,13 +80,15 @@ export function CitiesSection() {
                 </div>
 
                 {/* View All */}
-                <a
-                    href="#"
-                    className="mt-6 md:mt-8 flex items-center gap-1.5 w-full md:w-fit mx-auto justify-center px-4 md:px-6 py-2.5 md:py-4 border border-amber-red text-amber-red rounded text-sm md:text-base font-medium hover:bg-amber-red-light transition-colors"
-                >
-                    View All Cities
-                    <ArrowUpRight size={16} className="rotate-45" />
-                </a>
+                <div className="mt-12 flex justify-center">
+                    <a
+                        href="#"
+                        className="group flex items-center gap-2 px-8 py-4 bg-white border border-slate-200 text-slate-800 rounded-full text-sm lg:text-base font-bold shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5"
+                    >
+                        View All Destinations
+                        <ArrowUpRight size={18} className="text-amber-red transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </a>
+                </div>
             </div>
         </section>
     );

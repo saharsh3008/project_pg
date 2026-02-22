@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+import { Plus_Jakarta_Sans } from "next/font/google";
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
 export const metadata: Metadata = {
   title: "Discover the Best Student Accommodation | Amber Clone",
   description:
@@ -19,7 +26,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className="font-sans antialiased bg-white text-gray-900">
+      <body className={`${jakarta.variable} font-sans antialiased bg-[#FAF9F6] text-slate-800`}>
         {children}
       </body>
     </html>

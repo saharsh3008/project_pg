@@ -21,24 +21,25 @@ export function Header() {
         <>
             <header
                 className={cn(
-                    "fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-300",
+                    "fixed top-0 left-0 right-0 z-50 h-[72px] transition-all duration-500",
                     scrolled
-                        ? "bg-white shadow-md"
+                        ? "glass-panel"
                         : "bg-transparent"
                 )}
             >
                 <div className="flex items-center justify-between h-full max-w-[1440px] mx-auto px-4 lg:px-9">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-1.5 z-10">
-                        <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none">
-                            <rect width="32" height="32" rx="8" fill="#ED3A56" />
-                            <path d="M16 6L24 24H8L16 6Z" fill="white" opacity="0.9" />
-                            <circle cx="16" cy="20" r="3" fill="white" />
-                        </svg>
+                    <Link href="/" className="flex items-center gap-2 z-10 group">
+                        <div className="w-9 h-9 rounded-xl bg-gradient-brand flex items-center justify-center shadow-lg group-hover:shadow-amber-red/30 transition-shadow">
+                            <svg className="w-5 h-5 text-white" viewBox="0 0 32 32" fill="none">
+                                <path d="M16 6L24 24H8L16 6Z" fill="currentColor" opacity="0.9" />
+                                <circle cx="16" cy="20" r="3" fill="currentColor" />
+                            </svg>
+                        </div>
                         <span
                             className={cn(
-                                "text-[22px] font-bold tracking-tight transition-colors duration-300",
-                                scrolled ? "text-amber-red" : "text-white"
+                                "text-2xl font-extrabold tracking-tight transition-colors duration-300",
+                                scrolled ? "text-gray-900" : "text-white"
                             )}
                         >
                             amber
@@ -68,7 +69,7 @@ export function Header() {
                     <div className="flex items-center gap-3">
                         <Link
                             href="/auth/login"
-                            className="hidden md:inline-flex items-center px-5 py-2 rounded-full text-sm font-semibold bg-amber-red text-white hover:bg-amber-red-hover transition-colors"
+                            className="hidden md:inline-flex items-center px-6 py-2.5 rounded-full text-sm font-semibold bg-gradient-brand text-white hover:bg-gradient-brand-hover shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5"
                         >
                             Login / Sign Up
                         </Link>

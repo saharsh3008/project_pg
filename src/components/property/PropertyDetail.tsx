@@ -118,51 +118,55 @@ export function PropertyDetail({ property }: { property: Property }) {
                     </div>
 
                     {/* Right: Booking Sidebar */}
-                    <div className="lg:w-[380px] flex-shrink-0">
-                        <div className="bg-white rounded-2xl p-6 border border-gray-100 sticky top-24 space-y-5">
+                    <div className="lg:w-[400px] flex-shrink-0">
+                        <div className="bg-white rounded-3xl p-7 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.06)] sticky top-28 space-y-6">
                             <div className="flex items-baseline gap-1">
-                                <span className="text-3xl font-bold text-gray-900">{sym}{property.price_per_month}</span>
-                                <span className="text-sm text-gray-400">/month</span>
+                                <span className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-700">{sym}{property.price_per_month}</span>
+                                <span className="text-sm text-slate-400 font-medium">/month</span>
                             </div>
-                            <p className="text-xs text-gray-500 -mt-2">Bills included • No hidden fees</p>
-                            <div className="space-y-3">
+                            <p className="text-xs text-emerald-600 font-medium -mt-3 bg-emerald-50 w-fit px-2 py-1 rounded-md">Bills included • No hidden fees</p>
+
+                            <div className="space-y-4 pt-2">
                                 <div>
-                                    <label className="text-xs font-medium text-gray-500 block mb-1">Move-in Date</label>
+                                    <label className="text-[13px] font-bold text-slate-700 block mb-1.5">Move-in Date</label>
                                     <div className="relative">
-                                        <Calendar size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                                        <Calendar size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
                                         <input
                                             type="date"
                                             value={checkIn}
                                             onChange={(e) => setCheckIn(e.target.value)}
-                                            className="w-full h-11 pl-10 pr-3 border border-gray-200 rounded-xl text-sm text-gray-700 outline-none focus:ring-2 focus:ring-amber-red/20 focus:border-amber-red"
+                                            className="w-full h-12 pl-11 pr-4 border border-slate-200 rounded-xl text-sm text-slate-700 font-medium outline-none focus:ring-2 focus:ring-amber-red/20 focus:border-amber-red transition-all"
                                         />
                                     </div>
                                 </div>
                                 <div>
-                                    <label className="text-xs font-medium text-gray-500 block mb-1">Move-out Date</label>
+                                    <label className="text-[13px] font-bold text-slate-700 block mb-1.5">Move-out Date</label>
                                     <div className="relative">
-                                        <Calendar size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                                        <Calendar size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
                                         <input
                                             type="date"
                                             value={checkOut}
                                             onChange={(e) => setCheckOut(e.target.value)}
-                                            className="w-full h-11 pl-10 pr-3 border border-gray-200 rounded-xl text-sm text-gray-700 outline-none focus:ring-2 focus:ring-amber-red/20 focus:border-amber-red"
+                                            className="w-full h-12 pl-11 pr-4 border border-slate-200 rounded-xl text-sm text-slate-700 font-medium outline-none focus:ring-2 focus:ring-amber-red/20 focus:border-amber-red transition-all"
                                         />
                                     </div>
                                 </div>
                             </div>
-                            <Link
-                                href={`/property/${property.id}/book?checkIn=${checkIn}&checkOut=${checkOut}`}
-                                className="w-full h-12 rounded-xl bg-amber-red text-white font-semibold text-sm hover:bg-amber-red-hover transition-colors flex items-center justify-center cursor-pointer"
-                            >
-                                Continue to Book
-                            </Link>
-                            <Link
-                                href={`/dashboard/messages?start=true&property=${property.id}&landlord=${property.landlord_id}`}
-                                className="w-full mt-4 h-12 rounded-xl bg-gray-900 text-white font-semibold text-sm hover:bg-gray-800 transition-colors flex items-center justify-center gap-2 cursor-pointer"
-                            >
-                                <MessageCircle size={16} /> Contact Landlord
-                            </Link>
+
+                            <div className="pt-2">
+                                <Link
+                                    href={`/property/${property.id}/book?checkIn=${checkIn}&checkOut=${checkOut}`}
+                                    className="w-full h-14 rounded-xl bg-gradient-brand text-white font-bold text-base hover:bg-gradient-brand-hover hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center cursor-pointer"
+                                >
+                                    Continue to Book
+                                </Link>
+                                <Link
+                                    href={`/dashboard/messages?start=true&property=${property.id}&landlord=${property.landlord_id}`}
+                                    className="w-full mt-3 h-14 rounded-xl bg-white border-2 border-slate-900 text-slate-900 font-bold text-base hover:bg-slate-50 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                                >
+                                    <MessageCircle size={18} /> Contact Landlord
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -249,63 +249,64 @@ export function PropertyGrid({ initialProperties }: { initialProperties: Propert
                         <Link
                             key={property.id}
                             href={`/property/${property.id}`}
-                            className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                            className="group relative bg-white rounded-3xl border border-gray-100/80 overflow-hidden hover:shadow-[0_8px_30px_rgb(244,63,94,0.12)] hover:-translate-y-1 transition-all duration-300"
                         >
-                            <div className="relative h-[200px] overflow-hidden">
+                            <div className="relative h-[220px] overflow-hidden m-2 rounded-2xl">
                                 <Image
                                     src={property.images?.[0] || "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&h=400&fit=crop"}
                                     alt={property.title}
                                     fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                                     sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
                                 />
-                                <div className="absolute top-3 left-3 flex gap-1.5">
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60"></div>
+                                <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
                                     {property.is_featured && (
-                                        <span className="px-2 py-1 bg-amber-red text-white text-[10px] font-bold rounded-md">FEATURED</span>
+                                        <span className="px-2.5 py-1 text-white bg-gradient-to-r from-amber-yellow to-orange-500 text-[10px] font-bold rounded-lg shadow-sm">FEATURED</span>
                                     )}
                                     {property.is_verified && (
-                                        <span className="px-2 py-1 bg-emerald-500 text-white text-[10px] font-bold rounded-md">✓ VERIFIED</span>
+                                        <span className="px-2.5 py-1 bg-amber-green/90 backdrop-blur-md text-white text-[10px] font-bold rounded-lg shadow-sm">✓ VERIFIED</span>
                                     )}
                                 </div>
                                 <button
                                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWishlist(property.id); }}
-                                    className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors cursor-pointer"
+                                    className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center hover:bg-white hover:border-white transition-colors cursor-pointer z-10"
                                 >
-                                    <Heart size={16} className={cn("transition-colors", wishlisted.has(property.id) ? "fill-amber-red text-amber-red" : "text-gray-600")} />
+                                    <Heart size={16} className={cn("transition-colors", wishlisted.has(property.id) ? "fill-amber-red text-amber-red" : "text-white")} />
                                 </button>
-                                <div className="absolute bottom-3 left-3">
-                                    <span className="px-2 py-1 bg-black/50 backdrop-blur-sm text-white text-xs font-medium rounded-md capitalize">{property.type}</span>
+                                <div className="absolute bottom-3 left-3 z-10">
+                                    <span className="px-2.5 py-1 bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs font-semibold rounded-lg capitalize">{property.type}</span>
                                 </div>
                             </div>
-                            <div className="p-4">
-                                <h3 className="text-base font-semibold text-gray-900 group-hover:text-amber-red transition-colors line-clamp-1">{property.title}</h3>
-                                <div className="flex items-center gap-1 mt-1 text-xs text-gray-500">
-                                    <MapPin size={12} />
-                                    <span>{property.address || `${property.city}, ${property.country}`}</span>
+                            <div className="p-5 pt-3 relative">
+                                <h3 className="text-[17px] font-bold text-gray-900 group-hover:text-amber-red transition-colors line-clamp-1">{property.title}</h3>
+                                <div className="flex items-center gap-1.5 mt-1.5 text-[13px] text-gray-500 font-medium">
+                                    <MapPin size={14} className="text-gray-400" />
+                                    <span className="truncate">{property.address || `${property.city}, ${property.country}`}</span>
                                 </div>
                                 {property.nearby_university && (
-                                    <div className="flex items-center gap-1 mt-1 text-xs text-indigo-600">
+                                    <div className="flex items-center gap-1.5 mt-2 text-[12px] font-semibold text-indigo-600 bg-indigo-50 w-fit px-2 py-1 rounded-md">
                                         <span>🎓</span>
                                         <span>{property.nearby_university} • {property.distance_to_uni_km} km</span>
                                     </div>
                                 )}
-                                <div className="flex items-center gap-1.5 mt-3 overflow-hidden">
+                                <div className="flex items-center gap-1.5 mt-4 overflow-hidden">
                                     {(property.amenities || []).slice(0, 3).map((a) => (
-                                        <span key={a} className="px-2 py-0.5 bg-gray-100 text-gray-600 text-[11px] rounded-md whitespace-nowrap">{a}</span>
+                                        <span key={a} className="px-2.5 py-1 bg-slate-50 border border-slate-100 text-slate-600 font-medium text-[11px] rounded-lg whitespace-nowrap">{a}</span>
                                     ))}
                                     {(property.amenities || []).length > 3 && (
-                                        <span className="text-[11px] text-gray-400">+{property.amenities.length - 3}</span>
+                                        <span className="text-[11px] text-gray-400 font-medium px-1">+{property.amenities.length - 3}</span>
                                     )}
                                 </div>
-                                <div className="flex items-end justify-between mt-4 pt-3 border-t border-gray-100">
+                                <div className="flex items-end justify-between mt-5 pt-4 border-t border-gray-50">
                                     <div>
-                                        <span className="text-lg font-bold text-gray-900">{currencySymbols[property.currency] || "£"}{property.price_per_month}</span>
-                                        <span className="text-xs text-gray-400">/month</span>
+                                        <span className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-700">{currencySymbols[property.currency] || "£"}{property.price_per_month}</span>
+                                        <span className="text-xs text-slate-400 font-medium ml-1">/month</span>
                                     </div>
-                                    <div className="flex items-center gap-1">
-                                        <Star size={14} className="fill-amber-400 text-amber-400" />
-                                        <span className="text-sm font-semibold text-gray-900">{property.rating}</span>
-                                        <span className="text-xs text-gray-400">({property.review_count})</span>
+                                    <div className="flex items-center gap-1 bg-amber-50 px-2 py-1 rounded-lg">
+                                        <Star size={14} className="fill-amber-500 text-amber-500" />
+                                        <span className="text-[13px] font-bold text-amber-900">{property.rating}</span>
+                                        <span className="text-[11px] text-amber-700/60 font-medium">({property.review_count})</span>
                                     </div>
                                 </div>
                             </div>
