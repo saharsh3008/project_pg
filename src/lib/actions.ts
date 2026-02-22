@@ -166,3 +166,64 @@ export async function getCurrentUser() {
 
     return user;
 }
+
+/* ============================================
+   LANDLORD ACTIONS
+   ============================================ */
+
+/** Create a new property */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function createProperty(data: any): Promise<{ success: boolean; error?: string; propertyId?: string }> {
+    const supabase = createClient();
+    if (!supabase) return { success: false, error: "Supabase not configured" };
+
+    const {
+        data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) return { success: false, error: "Not authenticated" };
+
+    // Make sure latitude and longitude are null if empty (matches schema)
+    const propData = {
+        ...data,
+        landlord_id: user.id,
+        latitude: data.latitude || null,
+        longitude: data.longitude || null,
+    };
+
+    const { data: property, error } = await supabase
+        .from("properties")
+        .insert(propData)
+        .select("id")
+        .single();
+
+    if (error) {
+        return { success: false, error: error.message };
+    }
+
+    return { success: true, propertyId: property?.id };
+}
+
+/** Delete a property */
+export async function deleteProperty(propertyId: string): Promise<{ success: boolean; error?: string }> {
+    const supabase = createClient();
+    if (!supabase) return { success: false, error: "Supabase not configured" };
+
+    const {
+        data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) return { success: false, error: "Not authenticated" };
+
+    // RLS will ensure they can only delete their own
+    const { error } = await supabase
+        .from("properties")
+        .delete()
+        .eq("id", propertyId);
+
+    if (error) {
+        return { success: false, error: error.message };
+    }
+
+    return { success: true };
+}

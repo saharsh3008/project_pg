@@ -111,6 +111,33 @@ export async function getFeaturedProperties(limit = 6): Promise<Property[]> {
 }
 
 /* ============================================
+   LANDLORD QUERIES
+   ============================================ */
+
+export async function getLandlordProperties(): Promise<Property[]> {
+    const supabase = await createClient();
+
+    const {
+        data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) return [];
+
+    const { data, error } = await supabase
+        .from("properties")
+        .select("*")
+        .eq("landlord_id", user.id)
+        .order("created_at", { ascending: false });
+
+    if (error) {
+        console.error("Error fetching landlord properties:", error);
+        return [];
+    }
+
+    return (data as Property[]) || [];
+}
+
+/* ============================================
    REVIEW QUERIES
    ============================================ */
 
