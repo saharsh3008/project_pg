@@ -1,141 +1,175 @@
-# Amber Clone — Student Accommodation Platform
+<div align="center">
+  <img src="https://images.unsplash.com/photo-1523050854058-8df90110c476?w=1000&h=400&fit=crop" alt="Nivaas Banner" style="border-radius: 12px; margin-bottom: 20px;">
 
-A modern, full-stack student accommodation platform built with **Next.js 16**, **Supabase**, and **Tailwind CSS**.
+  # Nivaas 🏠✨  
+  *The modern, premium student accommodation platform.*
 
-> 🌐 **Live Demo**: [Coming soon on Vercel]
+  [![Next.js](https://img.shields.io/badge/Next.js-15+-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+  [![Supabase](https://img.shields.io/badge/Supabase-Database-3ECF8E?style=for-the-badge&logo=supabase)](https://supabase.com/)
+  [![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
 
-## ✨ Features
+  <br />
+  
+  [**View Live Demo**](#) • [**Report Bug**](#) • [**Request Feature**](#)
+</div>
 
-### 🏠 Homepage
-- Hero section with animated search bar
-- Country-wise city browsing (UK, Australia, US, Canada, Germany, Spain, Ireland)
-- Trust stats, features showcase, testimonials carousel
-- Contact section with Live Chat, WhatsApp, Email
+---
 
-### 🔐 Authentication
-- Email/Password signup & login
-- Google OAuth integration
-- Role-based access (Student / Landlord / Admin)
-- Session management with Supabase Auth
+## 🌟 Overview
 
-### 🔍 Property Search
-- Full-text search (city, university, property name)
-- Price range & room type filters
-- Sort by price, rating, or relevance
-- Wishlist / favorites toggle
+**Nivaas** (formerly amber-clone) is a state-of-the-art, full-stack student accommodation platform designed to help students globally find their perfect "Home away from Home."
 
-### 📄 Property Detail
-- Image gallery with carousel navigation
-- Amenities grid, description, ratings
-- Sticky booking sidebar with date pickers
-- Landlord contact (Chat / Call)
+It was crafted from the ground up to feature an incredibly immersive **Glassmorphism UI**, fluid micro-animations, and a highly responsive layout powered by Next.js and Tailwind CSS v4. On the backend, Nivaas leverages **Supabase** for secure authentication, real-time messaging between students and landlords, and robust PostgreSQL data management.
 
-### 📊 Dashboard
-- Stats overview (saved, bookings, messages, reviews)
-- Quick action grid
-- Recent bookings with status tracking
+---
 
-### 💾 Database
-- PostgreSQL via Supabase with Row Level Security
-- Tables: profiles, properties, bookings, reviews, wishlists, messages
-- Auto-profile creation on signup
-- Seed API for sample data
+## 🔥 Key Features
 
-## 🛠️ Tech Stack
+### 🎨 Premium Glassmorphism UI
+- **Plus Jakarta Sans** typography providing a sleek, modern startup aesthetic.
+- Interactive, multi-colored gradient tags and badges.
+- Frosted glass (`backdrop-blur`) utility cards, floating sticky headers, and smooth drop-shadow handling.
+- Pill-shaped tab interfaces and micro-animations tied to hover states.
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend | Next.js 16 (App Router + RSC) |
-| Styling | Tailwind CSS v4 |
-| Database | Supabase (PostgreSQL) |
-| Auth | Supabase Auth |
-| Storage | Supabase Storage |
-| Icons | Lucide React |
-| Deployment | Vercel |
+### 🔐 Secure & Seamless Authentication
+- Fully integrated **Supabase Auth** handling Email/Password setup.
+- Automatic User Profile generation via PostgreSQL triggers.
+- Dynamic layout adaptations based on authentication state (e.g., custom Dashboard dropdowns).
 
-## 📁 Project Structure
+### 🔍 Powerful Property Discovery
+- **Global Reach**: Browse accommodations by country (UK, US, Australia, etc.) or specific cities.
+- **Dynamic Search**: Interactive hero-section search bar connected straight to the filtered query engine.
+- **Complex Filtering**: Real-time filtering by price sliders, room types, and relevance sorting.
+- **Wishlist Engine**: Instantly save or unsave properties to your account wishlist.
 
-```
+### 📅 Booking & Management
+- Sticky sidebar booking widget allowing dynamic check-in and check-out selection.
+- Detailed receipt breakdowns (Deposit logic, months calculator, and tax tracking).
+- Dynamic Dashboard displaying active bookings, saved properties, and quick actions.
+
+### 💬 Real-Time Landlord Messaging
+- Fully integrated real-time chats using **Supabase Realtime subscriptions**.
+- Contact landlords directly from the property page and negotiate instantly in the dashboard messaging portal.
+- Instantly syncs new messages across all user sessions.
+
+---
+
+## 🛠️ Technology Stack
+
+| Architecture | Technologies |
+|--------------|--------------|
+| **Frontend Framework** | Next.js 15+ (App Router, Server Actions, RSC) |
+| **Styling** | Tailwind CSS v4, Lucide React (Icons) |
+| **Database** | Supabase (PostgreSQL), Row Level Security (RLS) |
+| **Authentication** | Supabase Auth (Middleware protected routes) |
+| **Real-Time** | Supabase Realtime Channels |
+| **Deployment** | Vercel (Configured for Edge and Node runtimes) |
+
+---
+
+## 📂 Project Structure
+
+```text
 src/
 ├── app/
-│   ├── (main)/           # Pages with Header/Footer
-│   │   ├── page.tsx      # Homepage
-│   │   ├── search/       # Property search
-│   │   ├── property/[id] # Property detail
-│   │   └── dashboard/    # User dashboard
-│   ├── auth/             # Login, Signup (no Header/Footer)
-│   ├── api/seed/         # Database seeding endpoint
-│   └── layout.tsx        # Root layout
+│   ├── (main)/             # Core Pages (Search, Property, Dashboard)
+│   │   ├── dashboard/      # Protected user control panel & Real-time Messages
+│   │   ├── property/[id]/  # Dynamic property listings & Booking checkout
+│   │   ├── search/         # The Grid, sorting, and filter logic
+│   │   └── page.tsx        # Immersive Hero & Home Page Sections
+│   ├── auth/               # Login & Registration Flows
+│   ├── api/seed/           # Dummy data generation API
+│   ├── layout.tsx          # Root Layout & Font Definitions
+│   └── globals.css         # Custom Theme Variables & Glass Utilities
 ├── components/
-│   ├── layout/           # Header, Footer, ChatFab
-│   └── home/             # Homepage sections
+│   ├── layout/             # Sticky Header, Footer, Notification Dropdown
+│   ├── home/               # Modular Homepage Sections (Hero, Cities, Stats)
+│   ├── property/           # Grid Cards, Details, Image Carousels
+│   └── dashboard/          # Chat Interface, List Forms, Notification Panels
 ├── lib/
-│   ├── supabase/         # Client, Server, Middleware
-│   ├── queries.ts        # Server-side data fetching
-│   ├── actions.ts        # Client-side mutations
-│   ├── constants.ts      # App data & config
-│   └── utils.ts          # Utilities
-├── types/                # TypeScript definitions
-└── middleware.ts         # Auth session refresh
+│   ├── supabase/           # Next.js SSR Supabase Clients
+│   ├── actions.ts          # Server Actions (Mutations, Booking creation)
+│   ├── queries.ts          # Read-only Server Queries
+│   └── constants.ts        # Global static configurations
+└── middleware.ts           # Supabase Session Refresh mechanism
 ```
+
+---
 
 ## 🚀 Getting Started
 
-### Prerequisites
-- Node.js 18+
-- npm
-- A Supabase project
+Follow these steps to get a local copy up and running quickly!
 
-### Setup
+### 1. Prerequisites
+- Node.js (v18 or higher)
+- npm or pnpm
+- A Supabase Project (Create one for free at [supabase.com](https://supabase.com))
 
+### 2. Setup
+
+Clone the repository and install dependencies:
 ```bash
-# Install dependencies
+git clone https://github.com/saharsh3008/project_pg.git
+cd project_pg
 npm install
+```
 
-# Configure environment
+### 3. Environment Variables
+Create a `.env.local` file in the root of your project:
+```bash
 cp .env.local.example .env.local
-# Add your Supabase URL and anon key
-
-# Run the database schema
-# Go to Supabase SQL Editor and run supabase/schema.sql
-
-# Start dev server
-npm run dev
 ```
-
-### Seed Sample Data
-After signing up, run in browser console:
-```js
-fetch('/api/seed', { method: 'POST' }).then(r => r.json()).then(console.log)
-```
-
-## 📝 Environment Variables
-
+Update `.env.local` with your Supabase credentials:
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 ```
 
-## 🗺️ Roadmap
+### 4. Database Initialization
+Go to your Supabase project dashboard -> **SQL Editor** and paste the contents of `supabase/schema.sql`. This will:
+- Create all necessary tables (`profiles`, `properties`, `messages`, `bookings`, `wishlists`, `reviews`).
+- Setup Row Level Security (RLS) policies.
+- Build trigger functions to auto-create profiles on user sign-up.
 
-- [x] Homepage with all sections
-- [x] Auth (Login/Signup)
-- [x] Property search with filters
-- [x] Property detail page
-- [x] User dashboard
-- [x] Supabase database schema
-- [ ] Landlord portal (add/manage properties)
-- [ ] Real booking flow with Stripe
-- [ ] Real-time chat (Supabase Realtime)
-- [ ] Reviews & ratings
-- [ ] Map view (Google Maps / Mapbox)
-- [ ] Mobile responsive testing
-- [ ] PWA support
+### 5. Start Development Server
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+### 6. Seed Sample Data (Optional)
+To test the platform, you can seed it with sample properties! Create an account via the UI, then open your browser's Developer Console and run:
+```javascript
+fetch('/api/seed', { method: 'POST' })
+  .then(res => res.json())
+  .then(console.log);
+```
+
+---
+
+## 🗺️ Roadmap & Milestones
+
+- [x] Immersive Homepage & Hero Redesign
+- [x] Secure Auth (Login/Signup via Supabase)
+- [x] Advanced Property Search engine with debounced filters
+- [x] Property Listing Details, Maps, and Amenities
+- [x] Dynamic User Dashboard & Notification Panel
+- [x] Advanced Drop-in Booking Flow
+- [x] **Real-Time Landlord/Student Messaging System**
+- [ ] Stripe Payment Gateway Integration
+- [ ] Multi-User Role Segregation (Landlord specific portal views)
+- [ ] Automated Review verification & calculation
+
+---
 
 ## 👤 Author
 
-**Saharsh** — [GitHub](https://github.com/saharsh3008)
+Developed by **Saharsh**  
+[GitHub](https://github.com/saharsh3008)
+
+---
 
 ## 📄 License
 
-MIT
+Distributed under the **MIT License**. See `LICENSE` for more information.
